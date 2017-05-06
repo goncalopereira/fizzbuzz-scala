@@ -1,6 +1,6 @@
 package com.equalexperts.fb
 
-object FizzBuzz {
+class FizzBuzz {
   val Fizz = "fizz"
   val Buzz = "buzz"
 
