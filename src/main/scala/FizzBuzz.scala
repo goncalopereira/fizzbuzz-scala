@@ -8,9 +8,9 @@ object FizzBuzz {
   def isMultipleOf5(value: Int): Boolean = value % 5 == 0
 
   def produce(first: Int, last: Int): String = {
-    val range = (first to last)
-    val outputs = range.map(x => output(x))
-    outputs.mkString(" ")
+    (first to last)
+    .map(output(_))
+    .mkString(" ")
   }
 
   def output(value: Int): String = value match {
