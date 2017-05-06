@@ -17,3 +17,6 @@
 
 ### Guard
 `sbt  ~testQuick`
+
+### Code Coverage
+`sbt coverageReport`
