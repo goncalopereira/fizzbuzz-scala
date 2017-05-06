@@ -9,8 +9,8 @@ class FizzBuzz {
 
   def produce(first: Int, last: Int): String = {
     (first to last)
-    .map(output(_))
-    .mkString(" ")
+      .map(output(_))
+      .mkString(" ")
   }
 
   def output(value: Int): String = value match {
