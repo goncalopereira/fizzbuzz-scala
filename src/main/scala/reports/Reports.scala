@@ -17,12 +17,9 @@ trait Reports {
 
   def outputsFormatting(counterReport: Map[String, Int]): IndexedSeq[String] = {
 
-    val outputsReport = reportOrder.map {
-      case key if counterReport.contains(key) => Some("%s: %s" format (key, counterReport(key)))
-      case key if !counterReport.contains(key) => None
-    }
+    val existingReportOrder = reportOrder.filter(counterReport.contains(_))
 
-    outputsReport.flatten
+    existingReportOrder.map { case key => "%s: %s" format (key, counterReport(key)) }
   }
 
   def report(outputs: IndexedSeq[String]): IndexedSeq[String] = {
