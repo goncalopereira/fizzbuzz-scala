@@ -15,7 +15,7 @@ class FizzBuzz {
   }
 
   def output(value: Int): String = value match {
-    case value if isMultipleOf3(value) && isMultipleOf5(value) => OutputTypes.Fizz + OutputTypes.Buzz
+    case value if isMultipleOf3(value) && isMultipleOf5(value) => OutputTypes.FizzBuzz
     case value if isMultipleOf3(value) => OutputTypes.Fizz
     case value if isMultipleOf5(value) => OutputTypes.Buzz
     case value => value.toString

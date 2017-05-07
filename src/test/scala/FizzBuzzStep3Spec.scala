@@ -41,6 +41,6 @@ class FizzBuzzStep3Spec extends FlatSpec with Matchers {
     val end = 20
     val knownRange = "1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz fizz: 4 buzz: 3 fizzbuzz: 1 lucky: 2 integer: 10"
 
-    fb.produce(1, 20) shouldEqual knownRange
+    fb.produce(start, end) shouldEqual knownRange
   }
 }

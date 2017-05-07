@@ -4,7 +4,7 @@ trait Reports {
   val reportOrder = IndexedSeq(
     OutputTypes.Fizz,
     OutputTypes.Buzz,
-    OutputTypes.Fizz + OutputTypes.Buzz,
+    OutputTypes.FizzBuzz,
     OutputTypes.Lucky,
     OutputTypes.Integer
   )
