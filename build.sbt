@@ -60,3 +60,5 @@ lazy val root = (project in file(".")).
     coverageFailOnMinimum := false,
     coverageHighlighting := true
   )
+
+  wartremoverWarnings ++= Warts.unsafe

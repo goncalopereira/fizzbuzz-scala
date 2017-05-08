@@ -10,6 +10,7 @@
 ## Development
 
 ### Lint
+* Any compile will trigger wartremover
 * src
 `sbt scalastyle`
 * tests

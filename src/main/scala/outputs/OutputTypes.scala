@@ -1,9 +1,9 @@
 package com.equalexperts.fb
 
 object OutputTypes {
-  val Fizz = "fizz"
-  val Buzz = "buzz"
-  val FizzBuzz = "fizzbuzz"
-  val Lucky = "lucky"
-  val Integer = "integer"
+  val Fizz: String = "fizz"
+  val Buzz: String = "buzz"
+  val FizzBuzz: String = "fizzbuzz"
+  val Lucky: String = "lucky"
+  val Integer: String = "integer"
 }
