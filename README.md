@@ -19,4 +19,4 @@
 `sbt  ~testQuick`
 
 ### Code Coverage
-`sbt coverageReport`
+`sbt clean coverage test coverageReport`
