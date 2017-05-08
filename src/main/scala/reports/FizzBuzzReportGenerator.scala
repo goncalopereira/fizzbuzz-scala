@@ -6,8 +6,12 @@ trait FizzBuzzReportGenerator {
     outputs.foldLeft(Map[String, Int]()) {
       (reportMap, output) =>
         output match {
-          case Left(output) => reportMap + (OutputTypes.Integer -> (reportMap.getOrElse(OutputTypes.Integer, 0) + 1))
-          case Right(output) => reportMap + (output -> (reportMap.getOrElse(output, 0) + 1))
+          case Left(output) => reportMap + (
+            OutputTypes.Integer -> (reportMap.getOrElse(OutputTypes.Integer, 0) + 1)
+          )
+          case Right(output) => reportMap + (
+            output -> (reportMap.getOrElse(output, 0) + 1)
+          )
         }
     }
   }
