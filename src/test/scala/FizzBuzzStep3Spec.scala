@@ -27,8 +27,20 @@ class FizzBuzzStep3Spec extends FlatSpec with Matchers {
     fb.output(15) shouldEqual Right("fizzbuzz")
   }
 
+  "outputCounter" should "fizz and fizz count given fizz" in {
+    fb.outputCounter(IndexedSeq(Right("fizz"))) shouldEqual Map[String, Int]("fizz" -> 1)
+  }
+
+  it should "integer and integer count given 1" in {
+    fb.outputCounter(IndexedSeq(Left(1))) shouldEqual Map[String, Int]("integer" -> 1)
+  }
+
   "Report" should "fizz and fizz count given fizz" in {
     fb.report(IndexedSeq(Right("fizz"))) shouldEqual IndexedSeq("fizz: 1")
+  }
+
+  it should "integer and integer count given 1" in {
+    fb.report(IndexedSeq((Left(1)))) shouldEqual IndexedSeq("integer: 1")
   }
 
   "Produce" should "integer given range one element" in {

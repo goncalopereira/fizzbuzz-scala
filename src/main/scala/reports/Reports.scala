@@ -1,6 +1,7 @@
 package com.equalexperts.fb
 
-trait Reports {
+trait FizzBuzzReports
+    extends FizzBuzzReportGenerator {
   val reportOrder = IndexedSeq(
     OutputTypes.Fizz,
     OutputTypes.Buzz,
@@ -9,23 +10,16 @@ trait Reports {
     OutputTypes.Integer
   )
 
-  def outputCounter(outputs: IndexedSeq[Either[Int, String]]): Map[String, Int] = {
-    outputs.foldLeft(Map[String, Int]()) {
-      (reportMap, output) =>
-        output match {
-          case Left(output) => reportMap + (OutputTypes.Integer -> (reportMap.getOrElse(OutputTypes.Integer, 0) + 1))
-          case Right(output) => reportMap + (output -> (reportMap.getOrElse(output, 0) + 1))
-        }
-    }
+  def report(outputs: IndexedSeq[Either[Int, String]]): IndexedSeq[String] = {
+    val outputReport = outputCounter(outputs)
+
+    sortedReportToList(outputReport)
   }
 
-  def report(outputs: IndexedSeq[Either[Int, String]]): IndexedSeq[String] = {
-    val outputCount = outputCounter(outputs)
-
-    val existingReportOrder = reportOrder.filter(outputCount.contains(_))
+  private def sortedReportToList(outputReport: Map[String, Int]): IndexedSeq[String] = {
+    val existingReportOrder = reportOrder.filter(outputReport.contains(_))
 
     existingReportOrder
-      .map { case key => "%s: %s" format (key, outputCount(key)) }
+      .map { case key => "%s: %s" format (key, outputReport(key)) }
   }
-
 }
