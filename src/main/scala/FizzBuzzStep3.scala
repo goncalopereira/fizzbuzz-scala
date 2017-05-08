@@ -8,7 +8,6 @@ class FizzBuzzStep3
     val outputs = mapRangeToOutput(first, last)
     val reportResults = report(outputs)
 
-    (outputs ++ reportResults)
-      .mkString(" ")
+    outputToString(outputs) + " " + reportResults.mkString(" ")
   }
 }

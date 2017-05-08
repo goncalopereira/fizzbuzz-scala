@@ -5,19 +5,27 @@ class FizzBuzz {
   def isMultipleOf5(value: Int): Boolean = value % 5 == 0
 
   def produce(first: Int, last: Int): String = {
-    mapRangeToOutput(first, last)
-      .mkString(" ")
+    val outputs = mapRangeToOutput(first, last)
+    outputToString(outputs)
   }
 
-  def mapRangeToOutput(first: Int, last: Int): IndexedSeq[String] = {
+  def mapRangeToOutput(first: Int, last: Int): IndexedSeq[Either[Int, String]] = {
     (first to last)
       .map(output(_))
   }
 
-  def output(value: Int): String = value match {
-    case value if isMultipleOf3(value) && isMultipleOf5(value) => OutputTypes.FizzBuzz
-    case value if isMultipleOf3(value) => OutputTypes.Fizz
-    case value if isMultipleOf5(value) => OutputTypes.Buzz
-    case value => value.toString
+  def outputToString(outputs: IndexedSeq[Either[Int, String]]): String = {
+    outputs.map {
+      case Left(value) => value
+      case Right(value) => value
+    }
+      .mkString(" ")
+  }
+
+  def output(value: Int): Either[Int, String] = value match {
+    case _ if isMultipleOf3(value) && isMultipleOf5(value) => Right(OutputTypes.FizzBuzz)
+    case _ if isMultipleOf3(value) => Right(OutputTypes.Fizz)
+    case _ if isMultipleOf5(value) => Right(OutputTypes.Buzz)
+    case _ => Left(value)
   }
 }

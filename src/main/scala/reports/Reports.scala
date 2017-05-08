@@ -9,26 +9,23 @@ trait Reports {
     OutputTypes.Integer
   )
 
-  def isInteger(input: String): Boolean = input.forall(_.isDigit)
-
-  def outputsCounter(outputs: IndexedSeq[String]): Map[String, Int] = {
-    outputs.groupBy(identity).mapValues(_.size)
+  def outputCounter(outputs: IndexedSeq[Either[Int, String]]): Map[String, Int] = {
+    outputs.foldLeft(Map[String, Int]()) {
+      (reportMap, output) =>
+        output match {
+          case Left(output) => reportMap + (OutputTypes.Integer -> (reportMap.getOrElse(OutputTypes.Integer, 0) + 1))
+          case Right(output) => reportMap + (output -> (reportMap.getOrElse(output, 0) + 1))
+        }
+    }
   }
 
-  def outputsFormatting(counterReport: Map[String, Int]): IndexedSeq[String] = {
+  def report(outputs: IndexedSeq[Either[Int, String]]): IndexedSeq[String] = {
+    val outputCount = outputCounter(outputs)
 
-    val existingReportOrder = reportOrder.filter(counterReport.contains(_))
+    val existingReportOrder = reportOrder.filter(outputCount.contains(_))
 
-    existingReportOrder.map { case key => "%s: %s" format (key, counterReport(key)) }
+    existingReportOrder
+      .map { case key => "%s: %s" format (key, outputCount(key)) }
   }
 
-  def report(outputs: IndexedSeq[String]): IndexedSeq[String] = {
-    val outputsWithInteger = outputs.map(
-      output => if (isInteger(output)) OutputTypes.Integer else output
-    )
-
-    val counterReport = outputsCounter(outputsWithInteger)
-
-    outputsFormatting(counterReport)
-  }
 }
